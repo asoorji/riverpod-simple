@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'shared/metrics.dart';
+import 'widgets/app_button.dart';
+
 void main() {
   runApp(
     // Adding ProviderScope enables Riverpod for the entire project
     const ProviderScope(child: MyApp()),
   );
 }
-
-///You can change all the x, y and z to ref. It still works
 
 /// Providers are declared globally and specify how to create a state
 final counterProvider = StateProvider((z) {
@@ -51,12 +52,15 @@ class MyHomePage extends ConsumerWidget {
                 final output = y.watch(isTextProvider);
                 return Column(
                   children: [
-                    Text(
-                      '$count',
-                    ),
+                    spacer,
+                    output
+                        ? ElevatedButton(onPressed: () {}, child: Text('Add'))
+                        : Text(
+                            '$count',
+                          ),
                     Text(
                       '$output',
-                    )
+                    ),
                   ],
                 );
               },
